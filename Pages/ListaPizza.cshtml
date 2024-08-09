@@ -1,0 +1,29 @@
+@page
+@model ListaPizzaModel
+@{
+    ViewData["Title"] = "Pizza List";
+}
+<h1>Pizza List</h1>
+<a asp-page="/index">Home</a>
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Gluten Free</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var pizza in Model.PizzaList)
+        {
+            <tr>
+                <td>@pizza.Name</td>
+                <td>
+                    <form method="POST" asp-page-handler="Delete" asp-route-id="@pizza.Id">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
